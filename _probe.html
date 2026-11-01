@@ -1,0 +1,51 @@
+<!doctype html>
+<html>
+<head><meta charset="utf-8"><title>probe</title></head>
+<body>
+<div id="out">working</div>
+<script src="js/data.js"></script>
+<script src="js/store.js"></script>
+<script>
+try {
+  var t = [];
+
+  /* simulate a browser that still holds the old demo database */
+  localStorage.clear();
+  localStorage.setItem("vethms.db.v1", '{"clients":[{"id":"C-1"}],"patients":[{"id":"P-1"}]}');
+
+  Store.init();
+  t.push("old-key-removed:" + (localStorage.getItem("vethms.db.v1") === null));
+  t.push("init-empty:" + Store.isEmpty());
+  t.push("init-clients:" + Store.db.clients.length + "|patients:" + Store.db.patients.length + "|appts:" + Store.db.appointments.length + "|invoices:" + Store.db.invoices.length);
+  t.push("init-meta:" + Store.db.meta.hospital);
+  t.push("init-vets:" + Store.db.vets.length + "|drugs:" + Store.db.drugs.length);
+
+  var s0 = Store.stats();
+  t.push("stats-empty:" + s0.apptsToday + "|" + s0.patientsActive + "|" + s0.revenue30 + "|" + s0.revenueDelta + "|" + s0.lowStock + "|" + s0.overdue);
+
+  Store.loadSample();
+  var d = Store.db;
+  t.push("sample:" + d.clients.length + "|" + d.patients.length + "|" + d.appointments.length + "|" + d.encounters.length + "|" + d.prescriptions.length + "|" + d.invoices.length + "|" + d.inventory.length + "|" + d.activity.length + "|" + d.notifications.length);
+  t.push("sample-meta:" + d.meta.hospital);
+  t.push("sample-empty-flag:" + Store.isEmpty());
+
+  var s = Store.stats();
+  t.push("stats-sample:" + s.apptsToday + "|" + s.patientsActive + "|" + s.revenue30 + "|" + s.revenueDelta + "|" + s.lowStock + "|" + s.overdue);
+  t.push("mix:" + Store.speciesMix().length);
+  t.push("rev-series:" + Store.revenueSeries(12).values.join(",").slice(0, 60));
+  t.push("apptsbyday:" + Store.apptsByDay(14).values.join(","));
+
+  Store.reset();
+  t.push("after-reset-empty:" + Store.isEmpty() + "|meta:" + Store.db.meta.hospital);
+
+  /* leave sample data in storage for the visual screenshot */
+  Store.loadSample();
+  t.push("final:" + Store.db.clients.length + " clients, " + Store.db.patients.length + " patients");
+
+  document.getElementById("out").textContent = "RESULT " + t.join(" ;; ");
+} catch (e) {
+  document.getElementById("out").textContent = "ERROR " + (e && e.message ? e.message : String(e));
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>IZEX — Animal Hospital Management</title>
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+  <!-- Splash / opening animation -->
+  <div class="splash" id="splash" aria-hidden="true">
+    <div class="splash-glow"></div>
+    <div class="splash-orb orb-a"></div>
+    <div class="splash-orb orb-b"></div>
+    <div class="splash-inner">
+      <div class="splash-emblem">
+        <span class="splash-pulse"></span>
+        <svg class="splash-ring" viewBox="0 0 96 96" fill="none" aria-hidden="true">
+          <circle class="ring-track" cx="48" cy="48" r="44"/>
+          <circle class="ring-draw" cx="48" cy="48" r="44" pathLength="100"/>
+        </svg>
+        <div class="splash-logo">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="5.5" cy="5.5" r="1.9"/><circle cx="10.2" cy="3.4" r="1.9"/><circle cx="14.8" cy="3.4" r="1.9"/><circle cx="19.5" cy="5.5" r="1.9"/>
+            <path d="M12.3 8.6c-3.3-.7-6.9 2.2-7.7 5.4-.7 2.9 1.4 5.2 4.1 4.7 1.3-.2 2.4-.8 3.6-.8s2.3.6 3.6.8c2.7.5 4.8-1.8 4.1-4.7-.8-3.2-4.4-6.1-7.7-5.4Z"/>
+          </svg>
+        </div>
+      </div>
+      <div class="splash-name"><span>I</span><span>Z</span><span>E</span><span>X</span></div>
+      <div class="splash-sub">Animal Hospital Management</div>
+      <svg class="splash-ecg" viewBox="0 0 260 44" fill="none" preserveAspectRatio="none" aria-hidden="true">
+        <defs>
+          <linearGradient id="ecgGrad" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0" stop-color="#2dd4bf" stop-opacity="0"/>
+            <stop offset=".16" stop-color="#2dd4bf"/>
+            <stop offset="1" stop-color="#38bdf8"/>
+          </linearGradient>
+        </defs>
+        <path class="ecg-path" pathLength="100" d="M0 22 H58 L66 10 L76 34 L86 14 L94 22 H150 L158 10 L168 34 L178 14 L186 22 H260"
+          stroke="url(#ecgGrad)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+        <circle class="ecg-dot" cx="0" cy="0" r="2.8" fill="#5eead4">
+          <animateMotion dur="1.7s" begin="2.05s" repeatCount="indefinite"
+            path="M0 22 H58 L66 10 L76 34 L86 14 L94 22 H150 L158 10 L168 34 L178 14 L186 22 H260"/>
+        </circle>
+      </svg>
+      <div class="splash-bar"><span></span></div>
+    </div>
+  </div>
+
+  <!-- Route progress -->
+  <div class="route-progress" id="routeProgress"></div>
+
+  <!-- App shell -->
+  <div class="app">
+    <aside class="sidebar" id="sidebar"></aside>
+    <div class="main">
+      <header class="topbar" id="topbar"></header>
+      <main class="content" id="content" tabindex="-1"></main>
+    </div>
+  </div>
+
+  <!-- Overlays -->
+  <div id="overlay-root"></div>
+  <div id="toast-root" class="toast-root"></div>
+
+  <script src="js/icons.js"></script>
+  <script src="js/data.js"></script>
+  <script src="js/store.js"></script>
+  <script src="js/ui.js"></script>
+  <script src="js/charts.js"></script>
+  <script src="js/actions.js"></script>
+  <script src="js/views/dashboard.js"></script>
+  <script src="js/views/appointments.js"></script>
+  <script src="js/views/clients.js"></script>
+  <script src="js/views/patients.js"></script>
+  <script src="js/views/records.js"></script>
+  <script src="js/views/prescriptions.js"></script>
+  <script src="js/views/inventory.js"></script>
+  <script src="js/views/billing.js"></script>
+  <script src="js/views/reports.js"></script>
+  <script src="js/router.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
